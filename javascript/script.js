@@ -2,6 +2,30 @@
 const score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, draws: 0 };
 const choice = { rock: 'rock', paper: 'paper', scissors: 'scissors' };
 
+document.querySelector(".reset-score-button").addEventListener('click', () => {
+    resetScore();
+});
+document.querySelector(".js-move-buttons").children[0].addEventListener('click', () => {
+    playGame(choice.rock);
+});
+document.querySelector(".js-move-buttons").children[1].addEventListener('click', () => {
+    playGame(choice.paper);
+});
+document.querySelector(".js-move-buttons").children[2].addEventListener('click', () => {
+    playGame(choice.scissors);
+});
+document.body.addEventListener('keydown', (event) => {
+    if (event.key === 'r') {
+        playGame(choice.rock);
+    }
+    else if (event.key === 'p') {
+        playGame(choice.paper);
+    }
+    else if (event.key === 's') {
+        playGame(choice.scissors);
+    }
+});
+
 updateScoreElement();
 
 function playGame(playerMove) {
